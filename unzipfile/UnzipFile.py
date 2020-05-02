@@ -56,8 +56,10 @@ logging.basicConfig(filename="log.log",  #this is the file path
 currentDir = './'
 
 with os.scandir(currentDir) as entries:
+    num_of_zip_files = 0
     for entry in entries:
         if entry.name.endswith('.zip'):
+            num_of_zip_files+=1
             try:
                 print("Extracting '{}' file to same directory as zipfile's name".format(entry.name))
                 log.info("Extracting '{}' file to same directory as zipfile's name".format(entry.name))
@@ -65,3 +67,9 @@ with os.scandir(currentDir) as entries:
             except:
                 print("Could not extract '{}' zip file.".format(entry.name))
                 log.error("Could not extract '{}' zip file.".format(entry.name))
+        elif num_of_zip_files == 0:
+            print("No zip files are available in this directory.\nThanks for using.")
+            log.info("No zip files are available in this directory.\nThanks for using.")
+        else:
+            print("All available zip files have been extracted successfully.\nThanks for using.")
+            log.info("All available zip files have been extracted successfully.\nThanks for using.")
