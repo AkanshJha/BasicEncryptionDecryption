@@ -10,12 +10,6 @@ from pathlib import Path
 
 
 class EncryptionDecryption:
-    # def __init__(self):
-    #     self.file_dir = Path(file_path).parent
-    #
-    # def set_file_dir(self, file_path):
-    #      pass
-
     @staticmethod
     def encryption_choice():
         print("We are ready to encrypt your file/text...")
@@ -24,9 +18,10 @@ class EncryptionDecryption:
         if isinstance(string_or_filepath, _io.TextIOWrapper):
             print("File Type.")
             data = string_or_filepath.read()
+            # print(data)
             write_file = open("{}//encoded.txt".format(file_dir), "w")
-            write_file.write("".join(tuple(EncryptionDecryption.__decode_data(data))))
-            #EncryptionDecryption.__encode_data(data)
+            write_file.write("".join(tuple(EncryptionDecryption.__encode_data(data))))
+            # EncryptionDecryption.__encode_data(data)
             write_file.close()
         elif isinstance(string_or_filepath, str):
             print("string type.")
